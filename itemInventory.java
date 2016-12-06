@@ -246,28 +246,28 @@ public class itemInventory {
 	}
 
 
-	public static void main(String[] args)  {
-		Item i1 = new Item("pistol", 4, 64);
-		Item i2 = new Item("pills", 2, 13);
-		Item i3 = new Item("tomatos", 1, 7);
-		Item i4 = new Item("keys", 3, -1);
-		itemInventory inv = new itemInventory();
-		inv.pickup(i1);
-		inv.pickup(i2);
-		inv.pickup(i2);
-		inv.pickup(i2);
-		inv.pickup(i2);
-		inv.pickup(i3);
-		inv.pickup(i3);
-		inv.pickup(i3);
-		inv.pickup(i3);
-		inv.discard("tomatos");
-		inv.discard("tomatos");
-		inv.discard("tomatos");
-		inv.consume("pistol");
-		Item.lookat(inv.returnItemDontDelete("pills"));
-
-		inv.print();
-	}
+//	public static void main(String[] args)  {
+//		Item i1 = new Item("pistol", 4, 64);
+//		Item i2 = new Item("pills", 2, 13);
+//		Item i3 = new Item("tomatos", 1, 7);
+//		Item i4 = new Item("keys", 3, -1);
+//		itemInventory inv = new itemInventory();
+//		inv.pickup(i1);
+//		inv.pickup(i2);
+//		inv.pickup(i2);
+//		inv.pickup(i2);
+//		inv.pickup(i2);
+//		inv.pickup(i3);
+//		inv.pickup(i3);
+//		inv.pickup(i3);
+//		inv.pickup(i3);
+//		inv.discard("tomatos");
+//		inv.discard("tomatos");
+//		inv.discard("tomatos");
+//		inv.consume("pistol");
+//		Item.itemInfo(inv.returnItemDontDelete("pills"));
+//
+//		inv.print();
+//	}
 
 }

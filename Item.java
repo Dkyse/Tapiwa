@@ -41,23 +41,22 @@ public class Item {
 	* if this function is confusing to you, take a look at the "returnItemDontDelete()" 
 	 * function in the itemInventory.java
 	 */
-	public static void lookat(Item item)  {
+	public static void itemInfo(Item item)  {
 
 		/* if the input is null */
-		if  (item.equals(null))  {
+		if  (item == null)  {
 			System.out.println("There is no such item in your bag, you cannot look at it.");
 		}  else  {
 
 			if (item.category == 0)  {
 				System.out.println("This is just an ordinay " + item.name);
-				System.out.println("You can try drink it.");
+				System.out.println("You can try drink it. It will increase your water status.");
 			}  else  if  (item.category == 1)  {
 				System.out.println("This is just an ordinay " +item.name);
-				System.out.println("You can try eat it.");
+				System.out.println("You can try eat it. It will increase your food status.");
 			}  else  if  (item.category == 2)  {
 				System.out.println("This is just an ordinay " + item.name);
-				System.out.println("You can try eat it.");
-				System.out.println("It might heal you.");
+				System.out.println("You can try eat it. It will increase your mental and health status.");
 			}  else  if  (item.category == 3)  {
 				System.out.println("This is just an ordinay " + item.name);
 				System.out.println("You can save it for later.");
