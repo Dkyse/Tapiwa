@@ -1,74 +1,79 @@
+import java.util.Scanner;
 
 public class LanguageParser {
 
 	
-	public static void languageParse(String c, TextAdventure t)  {
+	public static void languageParse(String c, TextAdventure t, Scanner in)  {
 		
-		String[] in = c.split(" ");
+		String[] inString = c.split(" ");
 		
-		if  (in.length == 1
-				&& in[0].equalsIgnoreCase("rest") )  {
+		if  (inString.length == 1
+				&& inString[0].equalsIgnoreCase("rest") )  {
 			t.player.rest();
 			t.oneturn();
 			
-		}  else  if  (in.length == 2
-				&& in[0].equalsIgnoreCase("go") )  {
-			t.player.go(in[1], t.m);
+		}  else  if  (inString.length == 2
+				&& inString[0].equalsIgnoreCase("go") )  {
+			t.player.go(inString[1], t.m);
 			t.oneturn();
 			
-		}  else  if  (in.length == 2 
-				&& in[0].equalsIgnoreCase("consume") )  {
-			t.player.consume(in[1]);
+		}  else  if  (inString.length == 2 
+				&& inString[0].equalsIgnoreCase("consume") )  {
+			t.player.consume(inString[1]);
 			t.oneturn();
 			
-		}  else  if  (in.length == 3
-				&& in[0].equalsIgnoreCase("pick") 
-				&& in[1].equalsIgnoreCase("up"))  {
-			t.player.pickup(in[2]);
+		}  else  if  (inString.length == 3
+				&& inString[0].equalsIgnoreCase("pick") 
+				&& inString[1].equalsIgnoreCase("up"))  {
+			t.player.pickup(inString[2]);
 			t.oneturn();
 			
-		}  else  if  (in.length == 3
-				&& in[0].equalsIgnoreCase("item") 
-				&&  in[1].equalsIgnoreCase("info"))  {
-			t.player.itemInfo(in[2]);
+		}  else  if  (inString.length == 3
+				&& inString[0].equalsIgnoreCase("item") 
+				&&  inString[1].equalsIgnoreCase("info"))  {
+			t.player.itemInfo(inString[2]);
 			t.oneturn();
 			
-		}  else  if  (in.length == 2
-				&& in[0].equalsIgnoreCase("look")
-				&& in[1].equalsIgnoreCase("around"))  {
+		}  else  if  (inString.length == 2
+				&& inString[0].equalsIgnoreCase("look")
+				&& inString[1].equalsIgnoreCase("around"))  {
 			t.player.lookaround();
 			t.oneturn();
 			
-		}  else  if  (in.length == 2 && in[0].equalsIgnoreCase("discard"))  {
-			t.player.discard(in[1]);
+		}  else  if  (inString.length == 2 && inString[0].equalsIgnoreCase("discard"))  {
+			t.player.discard(inString[1]);
 			t.oneturn();
 			
-		}  else  if  (in.length == 2
-				&& in[1].equalsIgnoreCase("room") 
-				&& in[0].equalsIgnoreCase("search") )  {
+		}  else  if  (inString.length == 2
+				&& inString[1].equalsIgnoreCase("room") 
+				&& inString[0].equalsIgnoreCase("search") )  {
 			t.player.search();
 			t.oneturn();
 			
-		}  else  if  (in.length == 1 && in[0].equalsIgnoreCase("status"))  {
+		}  else  if  (inString.length == 1 && inString[0].equalsIgnoreCase("status"))  {
 			t.player.status();
 			t.oneturn();
 			
-		}  else  if  (in.length == 2 
-				&& in[0].equalsIgnoreCase("command") 
-				&& in[1].equalsIgnoreCase("menu")) {
+		}  else  if  (inString.length == 2 
+				&& inString[0].equalsIgnoreCase("command") 
+				&& inString[1].equalsIgnoreCase("menu")) {
 			t.player.commands();
 			t.oneturn();
 			
-		}  else  if  (in.length == 1 
-				&& in[0].equalsIgnoreCase("bag")) {
+		}  else  if  (inString.length == 1 
+				&& inString[0].equalsIgnoreCase("bag")) {
 			t.player.bag();
 			t.oneturn();
 			
-		}  else  if  (in.length == 3 
-				&& in[0].equalsIgnoreCase("where")
-				&& in[1].equalsIgnoreCase("am")
-				&& in[2].equalsIgnoreCase("i")) {
+		}  else  if  (inString.length == 1 
+				&& inString[0].equalsIgnoreCase("location")) {
 			t.player.location();
+			t.oneturn();
+			
+		}  else  if  (inString.length == 3 
+				&& inString[0].equalsIgnoreCase("attack")
+				&& inString[1].equalsIgnoreCase("with")) {
+			t.player.attack(inString[2], in);
 			t.oneturn();
 			
 		}  else  {

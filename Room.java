@@ -16,6 +16,7 @@ public abstract class Room {
 	protected String s;
 	protected itemInventory itemList;
 	protected boolean searched;
+	protected int human;
 
 	public Room(String name, String e, String s, String w,  String n, itemInventory itemList)  {
 		this.name = name;
@@ -25,6 +26,7 @@ public abstract class Room {
 		this.s = s;
 		this.itemList = itemList;
 		this.searched = false;
+		this.human = -1;
 	}
 
 	public String getName()  {

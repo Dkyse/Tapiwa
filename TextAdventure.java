@@ -9,7 +9,7 @@ public class TextAdventure {
 	
 	public TextAdventure()  {
 		this.m = LoadWorld.loadWorld();
-		this.player = new Player("bedroom", m);
+		this.player = new Player("small living room", m);
 		this.turns = 0;
 		this.days = 1;
 	}
@@ -35,7 +35,7 @@ public class TextAdventure {
 			this.turns = 0;
 			this.days += 1;
 			System.out.println("The night has fallen.");
-			System.out.println("You have survived " + this.days + " days.");
+			System.out.println("You have survived " + (this.days - 1) + " days.");
 			System.out.println("");
 			System.out.println("Day " + this.days);
 			
@@ -43,15 +43,21 @@ public class TextAdventure {
 			int  r = rand.nextInt((3 - 0) + 1) + 0;
 			if  (r == 0)  {
 			System.out.println("Today is sunny. The sky is clear and beyond reach.");
-			System.out.println("Sometimes it makes you wonder: are there really big Gods up there?");
-			System.out.println("But alas! Why does this happen me?");
+			System.out.println("Sometimes it makes you wonder: are there really Gods up there?");
+			System.out.println("If not, who is governing our universe?");
+			System.out.println("But alas! Why does this happen to me?");
 			}  else  if  (r == 1)  {
 				System.out.println("Today is rainy. Rain drops hit the roof, as if a lonely ghost is dancing above your head.");
+				System.out.println("\"I don't know,\" you think to yourself, \"if I can get out alive.\"");
+				System.out.println("What did I do wrong?");
 			}  else  if  (r == 2)  {
-				System.out.println("Today is cloudy and cold. It might start raining soon. You feel desperate.");
+				System.out.println("Today is cloudy and cold. It might start raining soon. You feel desperate and hopeless.");
+				System.out.println("\"Just get me out of here\", you say, \"I am willing to pay anything.\"");
+				System.out.println("But nobody is there to listen.");
 			}  else  if  (r == 3)  {
 				System.out.println("Today is windy. The wind is moaning outside the window.");
 				System.out.println("You feel like the house is almost falling.");
+				System.out.println("Trembling, you feel cold.");
 			}
 		}
 	}
@@ -59,39 +65,47 @@ public class TextAdventure {
 	
 	
 	public static void welcomeToTheGame(Scanner in, TextAdventure t)  {
+		System.out.println("");
+		System.out.println("****WARNING****");
+		System.out.println("Graphic Content");
+		System.out.println("This game contains content that maybe disturbing and/or offensive to some players and/or viewers.");
+		System.out.println("Viewer discretion is strongly advised.");
+		System.out.println("Entering the game means you are aware of this warning and wish to continue.");
+		System.out.println("[type anything to start the game]");
+		in.nextLine();
 		System.out.println("You wake up in an unfamiliar room.");
-		System.out.println("[type anything]");
+		System.out.println("[hit Enter]");
 		in.nextLine();
 		System.out.println("You are lying on a cold concrete floor.");
-		System.out.println("There are broken glasses under your chest.");
-		System.out.println("[type anything]");
+		System.out.println("There is broken glass protruding from your chest.");
+		System.out.println("[hit Enter]");
 		in.nextLine();
 		System.out.println("Noises come from another room.");
 		System.out.println("It sounds like people talking.");
-		System.out.println("You roughly remember that last night you were driving down the freeway,");
+		System.out.println("You roughly remember last night you were driving down the freeway,");
 		System.out.println("and at about 20:00, you were attacked."); 
 		System.out.println("There were eggs thrown on your front window from one side of the road.");
-		System.out.println("[type anything]");
+		System.out.println("[hit Enter]");
 		in.nextLine();
-		System.out.println("The eggs blocked your sight, and you crushed.");
-		System.out.println("You don't know who threw the eggs, and why did they do that.");
+		System.out.println("The eggs blocked your sight, and you crashed.");
+		System.out.println("You don't know who threw the eggs, and why they did that.");
 		System.out.println("You passed out immediately.");
-		System.out.println("[type anything]");
+		System.out.println("[hit Enter]");
 		in.nextLine();
 		System.out.println("But when you wake up from the coma this morning, you are locked in this house with several other strangers.");
 		System.out.println("There is no way out.");
-		System.out.println("[type anything]");
+		System.out.println("[hit Enter]");
 		in.nextLine();
-		System.out.println("You have four status:");
+		System.out.println("You have four statuses:");
 		System.out.println("Health, food, water, and mental state.");
 		System.out.println("If any of them drops to 0, you are dead.");
-		System.out.println("Eat, drink, rest, and take pills.");
-		System.out.println("[type anything]");
+		System.out.println("[hit Enter]");
 		in.nextLine();
+		System.out.println("Eat, drink, rest, and take pills.");
 		System.out.println("Find supplies in the house.");
 		System.out.println("Protect yourself, and stay alive.");
 		System.out.println("Welcome to the game.");
-		System.out.println("[type anything]");
+		System.out.println("[hit Enter]");
 		in.nextLine();
 		t.player.commands();
 		System.out.println("[type command]");
@@ -110,7 +124,7 @@ public class TextAdventure {
 		while  (!input.equalsIgnoreCase("suicide"))  {
 		
 			
-		LanguageParser.languageParse(input, t);
+		LanguageParser.languageParse(input, t, in);
 		
 		if  (t.player.checkAlive() == false)  {
 			break;
@@ -125,58 +139,9 @@ public class TextAdventure {
 		/* check how you died */
 		t.player.checkDeathReason();
 		
-		System.out.println("Thanks for playing");
+		System.out.println("Thanks for playing.");
 		in.close();
-		
-		
-		
-//		
-//		
-//		t.player.status(); //check
-//		t.player.oneturn();
-//		
-//		t.player.go("north", t.m);  //check
-//		t.player.oneturn();
-//		
-//		t.player.go("east", t.m);  //check
-//		t.player.oneturn();
-//		
-//		t.player.go("soef", t.m); //check
-//		t.player.oneturn();
-//		
-//		t.player.lookaround();  //check
-//		t.player.oneturn();
-//		
-//		t.player.search(); //check
-//		t.player.oneturn();
-//		
-//		t.player.pickup("garbage");
-//		t.player.oneturn();
-//		
-//		t.player.search();
-//		t.player.oneturn();
-//		
-//		t.player.consume("GARBAGE");
-//		t.player.oneturn();
-//		
-//		t.player.consume("water");
-//		t.player.oneturn();
-//		
-//		t.player.status();
-//		t.player.oneturn();
-//		
-//		t.player.discard("paper");
-//		t.player.oneturn();
-//		
-//		t.player.search();
-//		t.player.oneturn();
-//		
-//		t.player.pickup("bottle of water");
-//		t.player.oneturn();
-//		
-//		t.player.status();
-//		t.player.oneturn();
-		
+
 	}
 	
 	
