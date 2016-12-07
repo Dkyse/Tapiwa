@@ -8,19 +8,19 @@ public class LoadWorld {
 		Map<String, Room> m = new HashMap<String, Room>();
 		
 		/* water */
-		Item bottle_of_water = new Item("bottle-of-water", 0, 35);
-		Item coke = new Item("coke", 0, 14);
-		Item pee = new Item("pee", 0, 10);
-		Item doctor_pepper = new Item("doctor_pepper", 0, 15);
-		Item tea = new Item("tea", 0, 28);
-		Item coffee = new Item("coffee", 0, 5);
+		Item bottle_of_water = new Item("bottle-of-water", 0, 65);
+		Item coke = new Item("coke", 0, 24);
+		Item pee = new Item("pee", 0, 30);
+		Item doctor_pepper = new Item("doctor-pepper", 0, 35);
+		Item tea = new Item("tea", 0, 38);
+		Item coffee = new Item("coffee", 0, 25);
 		
 		/* food */
 		Item pizza = new Item("pizza", 1, 86);
-		Item apple = new Item("apple", 1, 23);
+		Item apple = new Item("apple", 1, 33);
 		Item tomato = new Item("tomato", 1, 20);
-		Item cookie = new Item("cookie", 1, 10);
-		Item cup_cake = new Item("cup-cake", 1, 19);
+		Item cookie = new Item("cookie", 1, 15);
+		Item cup_cake = new Item("cup-cake", 1, 20);
 		Item chicken_leg = new Item("chicken-leg", 1, 22);
 		
 		/* medicine */

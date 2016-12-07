@@ -91,7 +91,7 @@ public class Player {
 
 				}  else if  (ret.getCategory() == 2)  {
 					this.health += ret.getEffect();
-					this.mental += 15;
+					this.mental += 45;
 				}
 			}
 		}
@@ -194,7 +194,6 @@ public class Player {
 						System.out.println("To pick them, type <pick up human-flesh> or <pick up human-blood>");
 						System.out.println("You don't have to pick them now. They are just going to stay on the floor.");
 						System.out.println("You can come back later.");
-						System.out.println("");
 						this.currentRoom.itemList.add(humanFlesh);
 						this.currentRoom.itemList.add(humanBlood);
 					}  else  {
@@ -239,16 +238,16 @@ public class Player {
 		System.out.println("");
 
 		if  (this.health <= 10)  {
-			System.out.println("WARNING: extremely tired. Seek MEDICINE or REST immediately.\n");
+			System.out.println("WARNING: extremely tired. Seek medicine or rest immediately.");
 		}
 		if  (this.water <= 36)  {
-			System.out.println("WARNING: extremely thirsty. Seek LIQUID immediately.\n");
+			System.out.println("WARNING: extremely thirsty. Seek liquid immediately.");
 		}
 		if  (this.food <= 20)  {
-			System.out.println("WARNING: extremely hungry. Seek FOOD immediately.\n");
+			System.out.println("WARNING: extremely hungry. Seek food immediately.");
 		}
 		if  (this.mental <= 50)  {
-			System.out.println("WARNING: mental state low. You may lose your mind soon.\n");
+			System.out.println("WARNING: mental state low. You may lose your mind soon.");
 		}
 	}
 	
@@ -285,7 +284,7 @@ public class Player {
 		}
 		if  (this.mental <= 0)  {
 			System.out.println("You were too depressed to carry on.");
-			System.out.println("Watch your mental state.");
+			System.out.println("Watch your mental state next time.");
 		}
 	}
 
@@ -297,7 +296,7 @@ public class Player {
 		System.out.println("\"status\": prints out player life status.");
 		System.out.println("\"rest\": take a rest. Mental and Health status will increase.");
 		System.out.println("\"consume <item name>\": consumes one item in your bag.");
-		System.out.println("\"pick up <item name>\": picks up one item found in the room.");
+		System.out.println("\"pick up <item name>\": picks up one item found in the room. If the room is not searched, you cannot pick up anything.");
 		System.out.println("\"item info <item name>\": gives you info about an item in the bag or the room");
 		System.out.println("\"look around\": describe the room.");
 		System.out.println("\"discard <item name>\": discard one item from bag.");
