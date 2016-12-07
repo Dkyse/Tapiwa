@@ -194,6 +194,7 @@ public class Player {
 						System.out.println("To pick them, type <pick up human-flesh> or <pick up human-blood>");
 						System.out.println("You don't have to pick them now. They are just going to stay on the floor.");
 						System.out.println("You can come back later.");
+						System.out.println("");
 						this.currentRoom.itemList.add(humanFlesh);
 						this.currentRoom.itemList.add(humanBlood);
 					}  else  {
@@ -238,16 +239,16 @@ public class Player {
 		System.out.println("");
 
 		if  (this.health <= 10)  {
-			System.out.println("WARNING: extremely tired. Seek medicine or rest immediately.");
+			System.out.println("WARNING: extremely tired. Seek MEDICINE or REST immediately.\n");
 		}
 		if  (this.water <= 36)  {
-			System.out.println("WARNING: extremely thirsty. Seek liquid immediately.");
+			System.out.println("WARNING: extremely thirsty. Seek LIQUID immediately.\n");
 		}
 		if  (this.food <= 20)  {
-			System.out.println("WARNING: extremely hungry. Seek food immediately.");
+			System.out.println("WARNING: extremely hungry. Seek FOOD immediately.\n");
 		}
 		if  (this.mental <= 50)  {
-			System.out.println("WARNING: mental state low. You may lose your mind soon.");
+			System.out.println("WARNING: mental state low. You may lose your mind soon.\n");
 		}
 	}
 	
@@ -284,7 +285,7 @@ public class Player {
 		}
 		if  (this.mental <= 0)  {
 			System.out.println("You were too depressed to carry on.");
-			System.out.println("Watch your mental state next time.");
+			System.out.println("Watch your mental state.");
 		}
 	}
 
