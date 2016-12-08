@@ -49,20 +49,21 @@ public class Item {
 		}  else  {
 
 			if (item.category == 0)  {
-				System.out.println("This is just an ordinay " + item.name);
-				System.out.println("You can try drink it. It will increase your water status.");
+				System.out.println("This is just an ordinay " + item.name + ".");
+				System.out.println("You can try drink it. It will increase your water status by " + item.getEffect() +".");
 			}  else  if  (item.category == 1)  {
-				System.out.println("This is just an ordinay " +item.name);
-				System.out.println("You can try eat it. It will increase your food status.");
+				System.out.println("This is just an ordinay " +item.name +".");
+				System.out.println("You can try eat it. It will increase your food status by " + item.getEffect() +".");
 			}  else  if  (item.category == 2)  {
-				System.out.println("This is just an ordinay " + item.name);
-				System.out.println("You can try eat it. It will increase your mental and health status.");
+				System.out.println("This is just an ordinay " + item.name +".");
+				System.out.println("You can try eat it. It will increase your health status by " + item.getEffect() +".");
+				System.out.println("It will increase your mental status by 45.");
 			}  else  if  (item.category == 3)  {
-				System.out.println("This is just an ordinay " + item.name);
+				System.out.println("This is just an ordinay " + item.name +".");
 				System.out.println("You can save it for later.");
 			}  else  if  (item.category == 4)  {
-				System.out.println("This is just an ordinay " + item.name);
-				System.out.println("It might be able to protect you.");
+				System.out.println("This is just an ordinay " + item.name +".");
+				System.out.println("You can use it whenever necessary.");
 			}
 		}
 	}

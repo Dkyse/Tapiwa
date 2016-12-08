@@ -22,7 +22,7 @@ public class TextAdventure {
 	
 	public void oneturn()  {
 		
-		this.player.checkWarning();
+//		this.player.checkWarning();
 		this.player.checkCap();
 		
 		this.turns += 1;
@@ -43,16 +43,15 @@ public class TextAdventure {
 			int  r = rand.nextInt((3 - 0) + 1) + 0;
 			if  (r == 0)  {
 			System.out.println("Today is sunny. The sky is clear and beyond reach.");
-			System.out.println("Sometimes it makes you wonder: are there really Gods up there?");
-			System.out.println("If not, who is governing our universe?");
-			System.out.println("But alas! Why does this happen to me?");
+			System.out.println("Why does this happen to me?");
+			System.out.println("Everything happens for a reason.");
 			}  else  if  (r == 1)  {
-				System.out.println("Today is rainy. Rain drops hit the roof, as if a lonely ghost is dancing above your head.");
+				System.out.println("Today is rainy. Rain drops hit the roof, making noises.");
 				System.out.println("\"I don't know,\" you think to yourself, \"if I can get out alive.\"");
 				System.out.println("What did I do wrong?");
 			}  else  if  (r == 2)  {
 				System.out.println("Today is cloudy and cold. It might start raining soon. You feel desperate and hopeless.");
-				System.out.println("\"Just get me out of here\", you say, \"I am willing to pay anything.\"");
+				System.out.println("\"I'm losing it\", you say.");
 				System.out.println("But nobody is there to listen.");
 			}  else  if  (r == 3)  {
 				System.out.println("Today is windy. The wind is moaning outside the window.");
@@ -108,6 +107,12 @@ public class TextAdventure {
 		System.out.println("[hit Enter]");
 		in.nextLine();
 		t.player.commands();
+		System.out.println("[hit Enter]");
+		in.nextLine();
+		System.out.println("Novice Guide:");
+		System.out.println("Always search your room first.");
+		System.out.println("Pick up as many items as you can.");
+		System.out.println("If mental status is low, use medicine or take rest.");
 		System.out.println("[type command]");
 	}
 	
@@ -122,22 +127,26 @@ public class TextAdventure {
 		welcomeToTheGame(in, t);
 		String input = in.nextLine();
 		while  (!input.equalsIgnoreCase("suicide"))  {
-		
 			
 		LanguageParser.languageParse(input, t, in);
+		
+		t.player.checkWarning();
 		
 		if  (t.player.checkAlive() == false)  {
 			break;
 		}
 		
 		input = in.nextLine();
+		System.out.println("");
 		}
 		
 		System.out.println("");
 		System.out.println("You are DEAD.");
+		System.out.println("You survided " + t.days + " days.");
 		
 		/* check how you died */
 		t.player.checkDeathReason();
+		
 		
 		System.out.println("Thanks for playing.");
 		in.close();

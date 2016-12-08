@@ -77,8 +77,7 @@ public class LanguageParser {
 			t.oneturn();
 			
 		}  else  {
-			System.out.println("Invalid input. Type in <command menu> for instructions");
-			t.oneturn();
+			System.out.println("Invalid input. Check your spellings, or type in <command menu> for instructions");
 		}
 		
 	}

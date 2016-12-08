@@ -10,13 +10,8 @@ public class Livingroom extends Room {
 
 	@Override
 	public void lookaround() {
-		
 		System.out.println("This room looks like a living room.");
-		System.out.println("You use to sing songs in your living room.");
-		System.out.println("You wish to sing now, but you shouldn't.");
-		System.out.println("There are predators here.");
-		System.out.println("WATCH OUT");
-		
+		System.out.println("The fire place looks nice, but the fire is pale.");
 	}
 	
 	public void search()  {

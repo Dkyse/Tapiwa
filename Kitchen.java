@@ -13,8 +13,8 @@ public class Kitchen extends Room {
 		
 		System.out.println("This room looks like a kitchen.");
 		System.out.println("There is a dead cat in the microwave, scorched.");
-		System.out.println("Lucky him, "
-				+ "he does not have to go through what you are going through.");
+		System.out.println("\"Lucky him, \"" + "you think to yourself, "
+				+ "\"he does not have to go through what you are going through.\"");
 		
 	}
 	

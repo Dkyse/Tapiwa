@@ -13,7 +13,8 @@ public class Balcony extends Room {
 		
 		System.out.println("This room looks like a balcony.");
 		System.out.println("It is cold out here.");
-		System.out.println("But not half as cold as your heart feels right now.");
+		System.out.println("Your heart meets the coldness.");
+		System.out.println("It shrinks.");
 	}
 	
 	public void search()  {

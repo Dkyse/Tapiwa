@@ -1,12 +1,5 @@
 
 
-//each room contains four other rooms that are n, s, e, w.
-//each room contains an object list.
-
-//method: 
-//look around
-
-
 public abstract class Room {
 
 	protected String name;

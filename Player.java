@@ -101,13 +101,19 @@ public class Player {
 
 	public void pickup(String item)  {
 
-		/* take the item out of the room inventory */
-		Item pick = this.currentRoom.pickup(item);
+		if  (this.bag.isFull())  {
+			System.out.println("Cannot pick up this item because your bag is full.");
+		}  else  {
+			/* take the item out of the room inventory */
+			Item pick = this.currentRoom.pickup(item);
 
-		if  (pick != null)  {
-			this.bag.pickup(pick);
+			if  (pick != null)  {
+				this.bag.pickup(pick);
+			}
 		}
 	}
+
+
 
 	public void itemInfo(String item)  {
 
@@ -160,20 +166,20 @@ public class Player {
 			System.out.println("You cannot attack because you don't have this weapon yet.");
 
 			/* if the person has the item */
-			
+
 			/* if the room has not living human */
 		}  else  if  (this.currentRoom.human <= 0)  {
 			System.out.println("There is no one for you to attack.");
 
 			/* if the room has living human */
 		}  else  if  (this.currentRoom.human > 0)  {
-			
+
 			/* if the item is not a weapon */
 			if  (this.bag.returnItemDontDelete(weapon).getCategory() != 4)  {
 				System.out.println("Cannot attack.");
 				System.out.println("Because " + weapon + " is not a weapon.");
 			}  else  {
-				
+
 				/* if everything is ready */
 				System.out.println("Are you sure? You may potentially kill this person.");
 				System.out.println("Answer [yes] or [no]");
@@ -188,16 +194,19 @@ public class Player {
 					/* check if the person is dead */
 					if  (this.currentRoom.human <= 0)  {
 						System.out.println("You killed this person.");
-						System.out.println("But why?");
-						System.out.println("I know you want to survive, but everybody does.");
+						System.out.println("You probably killed her to gain food and water.");
+						System.out.println("But really? Value people's lives differently?");
+						System.out.println("What makes your life more valuable than hers?");
+						System.out.println("");
 						System.out.println("The person drops human flesh and blood. You may pick them up for later use.");
 						System.out.println("To pick them, type <pick up human-flesh> or <pick up human-blood>");
 						System.out.println("You don't have to pick them now. They are just going to stay on the floor.");
 						System.out.println("You can come back later.");
+						System.out.println("");
 						this.currentRoom.itemList.add(humanFlesh);
 						this.currentRoom.itemList.add(humanBlood);
 					}  else  {
-						
+
 						/* if the attack does not kill the person */
 						/* no effect */
 					}
@@ -231,26 +240,26 @@ public class Player {
 		this.health -= 1;
 		this.mental -= 8;
 	}
-	
-	
+
+
 	public void checkWarning()  {
 
 		System.out.println("");
 
 		if  (this.health <= 10)  {
-			System.out.println("WARNING: extremely tired. Seek medicine or rest immediately.");
+			System.out.println("WARNING: extremely tired. Seek MEDICINE or REST immediately.\n");
 		}
 		if  (this.water <= 36)  {
-			System.out.println("WARNING: extremely thirsty. Seek liquid immediately.");
+			System.out.println("WARNING: extremely thirsty. Seek LIQUID immediately.\n");
 		}
 		if  (this.food <= 20)  {
-			System.out.println("WARNING: extremely hungry. Seek food immediately.");
+			System.out.println("WARNING: extremely hungry. Seek FOOD immediately.\n");
 		}
 		if  (this.mental <= 50)  {
-			System.out.println("WARNING: mental state low. You may lose your mind soon.");
+			System.out.println("WARNING: mental state low. Take medicine or rest immediately.\n");
 		}
 	}
-	
+
 
 	/* this function checks if your status goes over 100. */
 	public void checkCap()  {
@@ -284,7 +293,7 @@ public class Player {
 		}
 		if  (this.mental <= 0)  {
 			System.out.println("You were too depressed to carry on.");
-			System.out.println("Watch your mental state next time.");
+			System.out.println("Watch your mental state.");
 		}
 	}
 
@@ -296,7 +305,7 @@ public class Player {
 		System.out.println("\"status\": prints out player life status.");
 		System.out.println("\"rest\": take a rest. Mental and Health status will increase.");
 		System.out.println("\"consume <item name>\": consumes one item in your bag.");
-		System.out.println("\"pick up <item name>\": picks up one item found in the room. If the room is not searched, you cannot pick up anything.");
+		System.out.println("\"pick up <item name>\": picks up one item found in the room.");
 		System.out.println("\"item info <item name>\": gives you info about an item in the bag or the room");
 		System.out.println("\"look around\": describe the room.");
 		System.out.println("\"discard <item name>\": discard one item from bag.");
