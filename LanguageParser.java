@@ -5,8 +5,10 @@ public class LanguageParser {
 	
 	public static void languageParse(String c, TextAdventure t, Scanner in)  {
 		
+		/* split the input string and store it */
 		String[] inString = c.split(" ");
 		
+		/* check commands individually */
 		if  (inString.length == 1
 				&& inString[0].equalsIgnoreCase("rest") )  {
 			t.player.rest();
@@ -58,7 +60,6 @@ public class LanguageParser {
 				&& inString[0].equalsIgnoreCase("command") 
 				&& inString[1].equalsIgnoreCase("menu")) {
 			t.player.commands();
-			t.oneturn();
 			
 		}  else  if  (inString.length == 1 
 				&& inString[0].equalsIgnoreCase("bag")) {
@@ -79,8 +80,5 @@ public class LanguageParser {
 		}  else  {
 			System.out.println("Invalid input. Check your spellings, or type in <command menu> for instructions");
 		}
-		
 	}
-	
-	
 }

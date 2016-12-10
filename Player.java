@@ -9,8 +9,11 @@ public class Player {
 	private int mental;
 	private itemInventory bag;
 	private Room currentRoom;
+
+	/* if the user kills humans, add these two to the currentRoom's item inventory */
 	private Item humanFlesh;
 	private Item humanBlood;
+
 
 	public Player(String roomName, Map<String, Room> m)  {
 		this.health = 100;
@@ -19,8 +22,8 @@ public class Player {
 		this.mental = 100;
 		this.bag = new itemInventory();
 		this.currentRoom = m.get(roomName);
-		this.humanBlood = new Item("human-blood", 0, 90);
-		this.humanFlesh = new Item("human-flesh", 1, 90);
+		this.humanBlood = new Item("human-blood", 0, 99);
+		this.humanFlesh = new Item("human-flesh", 1, 99);
 	}
 
 
@@ -54,13 +57,29 @@ public class Player {
 
 
 	public void go(String direction, Map<String, Room> m)  {
+
+		/* newRoom is going to be null if the direction is invalid */
 		String newRoom = this.currentRoom.go(direction);
 		if (newRoom == null)  {
+
 			/* do nothing, because the spelling is incorrect */
+
 		}  else  {
+
 			if  (newRoom.equalsIgnoreCase("wall"))  {
 				System.out.println("You cannot go this way, there is no door in this direction.");
+
+				/* the following four lines are to restore the user's life status */
+				/* In other words, if the user runs into a wall, it is not going to drop life status much */
+				/* otherwise the game will be too hard */
+				this.health += 1;
+				this.food += 2;
+				this.water += 5;
+				this.mental += 7;
+
 			}  else  {
+
+				/* if newRoom is not null or a wall */
 				this.currentRoom = m.get(newRoom);
 				System.out.println("You have entered another room.");
 			}
@@ -81,6 +100,7 @@ public class Player {
 			/* if ret is null, it means there is no effect on the player, otherwise, do the effect */
 			if  (ret != null)  {	
 
+				/* every time you eat or drink something, your mental state increases */
 				this.mental += 10;
 
 				if  (ret.getCategory() == 0)  {
@@ -90,6 +110,8 @@ public class Player {
 					this.food += ret.getEffect();
 
 				}  else if  (ret.getCategory() == 2)  {
+
+					/* if you take medicine, both your mental and health status is increased */
 					this.health += ret.getEffect();
 					this.mental += 45;
 				}
@@ -104,6 +126,7 @@ public class Player {
 		if  (this.bag.isFull())  {
 			System.out.println("Cannot pick up this item because your bag is full.");
 		}  else  {
+
 			/* take the item out of the room inventory */
 			Item pick = this.currentRoom.pickup(item);
 
@@ -114,19 +137,20 @@ public class Player {
 	}
 
 
-
 	public void itemInfo(String item)  {
 
+		/* if you did not search the room, you cannot examine anything */
 		if  (this.currentRoom.searched == false)  {
 			System.out.println("You haven't searched the room yet.");
-		}  else  {
 
+		}  else  {
 
 			/* if the player has searched the room */
 			Item look = this.currentRoom.itemList.returnItemDontDelete(item);
 
-			/* if the room or the bag has this item, then look at it */
 			if  (look == null && !this.bag.contains(item))  {
+
+				/* if the neither the room nor the bag contains the item */
 				System.out.println("You cannot look at this item, "
 						+ "because its not in your bag or the room.");
 			}  else  {
@@ -150,9 +174,11 @@ public class Player {
 		this.currentRoom.lookaround();
 	}
 
+
 	public void discard(String item)  {
 		this.bag.discard(item);
 	}
+
 
 	public void search()  {
 		this.currentRoom.search();
@@ -166,9 +192,9 @@ public class Player {
 			System.out.println("You cannot attack because you don't have this weapon yet.");
 
 			/* if the person has the item */
-
-			/* if the room has not living human */
 		}  else  if  (this.currentRoom.human <= 0)  {
+
+			/* if the room does not have a living human */
 			System.out.println("There is no one for you to attack.");
 
 			/* if the room has living human */
@@ -185,17 +211,22 @@ public class Player {
 				System.out.println("Answer [yes] or [no]");
 				String answer = in.nextLine();
 
+				/* interpret user's answer */
 				if  (answer.equalsIgnoreCase("yes"))  {
 					/* attack the person */
-					System.out.println("You attack the girl with your " + this.bag.returnItemDontDelete(weapon).getName() + ".");
+					System.out.println("You attack the girl with your " + 
+							this.bag.returnItemDontDelete(weapon).getName() + ".");
+
 					System.out.println("She screams, and begs for mercy.");
+
+					/* decrease the human's life status */
 					this.currentRoom.human -= this.bag.returnItemDontDelete(weapon).getEffect();
 
 					/* check if the person is dead */
 					if  (this.currentRoom.human <= 0)  {
 						System.out.println("You killed this person.");
-						System.out.println("You probably killed her to gain food and water.");
-						System.out.println("But really? Value people's lives differently?");
+						System.out.println("You probably killed her to gain food and water, right?");
+						System.out.println("But why? Do you value people's lives differently?");
 						System.out.println("What makes your life more valuable than hers?");
 						System.out.println("");
 						System.out.println("The person drops human flesh and blood. You may pick them up for later use.");
@@ -211,9 +242,12 @@ public class Player {
 						/* no effect */
 					}
 
+					/* if the user stop the attack */
 				}  else  if  (answer.equalsIgnoreCase("no"))  {
 					System.out.println("Attack terminated.");
 				}  else  {
+
+					/* if the answer is neither yes nor no */
 					System.out.println("Cannot recognize your answer. Attack terminated.");
 				}
 			}
@@ -221,19 +255,16 @@ public class Player {
 	}
 
 
-
+	/* check if the user is alive before every turn */
 	public boolean checkAlive()  {
-		if  (this.health > 0 
+		return (this.health > 0 
 				&& this.food > 0
 				&& this.water > 0
-				&& this.mental > 0)  {
-			return true;
-		}  else  {
-			return false;
-		}
+				&& this.mental > 0);
 	}
 
 
+	/* for each turn, decrease life status */
 	public void oneturn()  {
 		this.water -= 6;
 		this.food -= 3;
@@ -242,6 +273,7 @@ public class Player {
 	}
 
 
+	/* if any of the life status is low, print out warning */
 	public void checkWarning()  {
 
 		System.out.println("");
@@ -249,7 +281,7 @@ public class Player {
 		if  (this.health <= 10)  {
 			System.out.println("WARNING: extremely tired. Seek MEDICINE or REST immediately.\n");
 		}
-		if  (this.water <= 36)  {
+		if  (this.water <= 35)  {
 			System.out.println("WARNING: extremely thirsty. Seek LIQUID immediately.\n");
 		}
 		if  (this.food <= 20)  {
@@ -262,6 +294,8 @@ public class Player {
 
 
 	/* this function checks if your status goes over 100. */
+	/* if yes, cap them */
+	/* this function is called before every turn */
 	public void checkCap()  {
 		if  (this.health > 100)  {
 			this.health = 100;
@@ -297,8 +331,7 @@ public class Player {
 		}
 	}
 
-
-
+	/* print out command menu */
 	public void commands()  {
 		System.out.println("Command Menu:");
 		System.out.println("\"go <direction>\": goes to a certain direction.");

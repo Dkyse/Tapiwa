@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class itemInventory {
@@ -19,6 +18,7 @@ public class itemInventory {
 		return this.items.size();
 	}
 
+	
 	/**
 	 * Checks if the inventory contains an item. 
 	 * The input is a string of the name of the item we are looking for.
@@ -41,14 +41,20 @@ public class itemInventory {
 
 
 	public boolean isFull()  {
+		
+		/* if the inventory has more than 7 items, it is full */
 		return this.size() >= 7;
 	}
 
 
 	public void add(Item item)  {
+		
+		/* if the inventory is full, we do NOT print out the error message in this function */
+		
+		/* we print the error message in the next function */
 		if  (!this.isFull())  {
 			this.items.add(item);
-		}	
+		}
 	}
 
 
@@ -57,7 +63,7 @@ public class itemInventory {
 	 * @param item
 	 */
 	/* NOTICE: this method takes an item, not a string. */
-	/* the input item comes from the room's inventory */
+	/* the input item comes from the room's inventory (the "return and delete" function)*/
 	public void pickup(Item item)  {
 
 		if  (this.isFull())  {
@@ -70,7 +76,6 @@ public class itemInventory {
 			/* if the input is null, that means the room does not contain it */
 			/* for more details see the next function */
 
-			//System.out.println("There is no such item in the room.");
 		}  else  {
 
 			this.items.add(item);
@@ -92,6 +97,7 @@ public class itemInventory {
 		/* if the room does not contain the item */
 		if (!this.contains(name))  {
 			return null;
+			
 		}  else  {
 
 			/* if the room contains the item, find it and return it */
@@ -114,9 +120,9 @@ public class itemInventory {
 
 	/**
 	 *  this method returns an item from the inventory, 
-	 *  but does not delete it from the inventory.
-	 *  This function is used when the user input "look at <item name>"
-	 *  It returns the item from the inventory and applies "lookat()" function in
+	 *  but does NOT delete it from the inventory.
+	 *  This function is used when the user input "item info <item name>"
+	 *  It returns the item from the inventory and applies "itemInfo()" function in
 	 *  the "Item.java" 
 	 */
 	public Item returnItemDontDelete(String name)  {
@@ -124,6 +130,7 @@ public class itemInventory {
 		/* if the inventory does not contain the item */
 		if (!this.contains(name))  {
 			return null;
+			
 		}  else  {
 
 			/* if the inventory contains the item, find it and return it */
@@ -156,12 +163,13 @@ public class itemInventory {
 					ret = i;
 
 					/* if we find the item, check category */
-					if  (i.getCategory() == 3 || i.getCategory() == 4)  {
+					if  (i.getCategory() == 4)  {
 						this.items.remove(i);
 						System.out.println("You have consumed " + i.getName() + 
 								", but you are not feeling really well after eating it.");
 						System.out.println("Maybe it's not something you are supposed to eat, is it?");
 						return null;
+						
 					}  else  {
 						this.items.remove(i);
 						System.out.println("You have consumed " + i.getName());
@@ -196,6 +204,7 @@ public class itemInventory {
 				}
 			}
 
+			/* ignore the following three lines */
 			System.out.println("If you see this message, the discard function is not working properly.");
 			System.out.println("Please contact game developer immediately.");
 			return false;
@@ -209,32 +218,28 @@ public class itemInventory {
 	}
 
 
-
-
-	/**
-	 * This method takes a map and its category.
-	 * It prints the map to the console.
-	 * @param m
-	 * @param category
-	 */
 	public void print()  {
 
 		if  (this.size() == 0)  {
+			
+			/* if the bag has nothing */
 			System.out.println("Absolutely nothing.");
+			
 		}  else  {
 
+			/* add everything in the inventory to a map */
 			Map<Item, Integer> m = new HashMap<Item, Integer>();
 
+			/* traverse the inventory */
 			for (Item i: this.items)  {
 
 				if  (m.containsKey(i))  {
-
 					m.put(i, m.get(i)+1);
 
 				}  else  {
 					m.put(i, 1);
 				}
-			}   /* finish puting all items in the map */
+			}   /* finish putting all items in the map */
 
 			/* print out the map */
 			Iterator<Map.Entry<Item, Integer>> itor = m.entrySet().iterator();
@@ -244,30 +249,5 @@ public class itemInventory {
 			}
 		}
 	}
-
-
-//	public static void main(String[] args)  {
-//		Item i1 = new Item("pistol", 4, 64);
-//		Item i2 = new Item("pills", 2, 13);
-//		Item i3 = new Item("tomatos", 1, 7);
-//		Item i4 = new Item("keys", 3, -1);
-//		itemInventory inv = new itemInventory();
-//		inv.pickup(i1);
-//		inv.pickup(i2);
-//		inv.pickup(i2);
-//		inv.pickup(i2);
-//		inv.pickup(i2);
-//		inv.pickup(i3);
-//		inv.pickup(i3);
-//		inv.pickup(i3);
-//		inv.pickup(i3);
-//		inv.discard("tomatos");
-//		inv.discard("tomatos");
-//		inv.discard("tomatos");
-//		inv.consume("pistol");
-//		Item.itemInfo(inv.returnItemDontDelete("pills"));
-//
-//		inv.print();
-//	}
 
 }

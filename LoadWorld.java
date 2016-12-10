@@ -28,13 +28,12 @@ public class LoadWorld {
 		Item adrenaline = new Item("adrenaline", 2, 15);
 		
 		/* weapon */
-		Item pistol = new Item("pistol", 4, 37);
+		Item pistol = new Item("pistol", 4, 53);
 		Item knife = new Item("knife", 4, 26);
 
 		/* initializing living room 1 */
 		itemInventory livsinv = new itemInventory();
 
-		
 		livsinv.add(apple);
 		livsinv.add(pill);
 		livsinv.add(pill);
@@ -45,9 +44,8 @@ public class LoadWorld {
 				"wall", "small bedroom", "wall", "wall", 
 				livsinv));
 
-		/* initializing living room 1 */
+		/* initializing living room 2 */
 		itemInventory bedsinv = new itemInventory();
-		
 		bedsinv.add(cup_cake);
 		bedsinv.add(pizza);
 		bedsinv.add(doctor_pepper);
@@ -58,6 +56,7 @@ public class LoadWorld {
 				"big living room", "wall", "small living room", 
 				bedsinv));
 		
+		/* initializing living room 3 */
 		itemInventory livbinv = new itemInventory();
 		livbinv.add(chicken_leg);
 		livbinv.add(cookie);
@@ -68,6 +67,7 @@ public class LoadWorld {
 				"bathroom", "kitchen", "small bedroom", 
 				livbinv));
 		
+		/* initializing living room 4 */
 		itemInventory kitinv = new itemInventory();
 		kitinv.add(chicken_leg);
 		kitinv.add(pizza);
@@ -78,12 +78,14 @@ public class LoadWorld {
 				"big bed room", "wall", "wall", 
 				kitinv));
 		
+		/* initializing living room 5 */
 		itemInventory balco = new itemInventory();
 		balco.add(apple);
 		m.put("balcony", new Balcony("balcony", "wall", 
 				"wall", "big living room", "wall", 
 				balco));
 		
+		/* initializing living room 6 */
 		itemInventory bath = new itemInventory();
 		bath.add(pee);
 		bath.add(adrenaline);
@@ -93,6 +95,7 @@ public class LoadWorld {
 				"wall", "big bed room", "big living room", 
 				bath));
 		
+		/* initializing living room 7 */
 		itemInventory bigbed = new itemInventory();
 		bigbed.add(apple);
 		bigbed.add(knife);

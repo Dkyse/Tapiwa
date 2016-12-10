@@ -20,11 +20,11 @@ public class TextAdventure {
 		this.turns += 1;
 	}
 	
+	
+	/* this function is called every time the user input a valid command */
 	public void oneturn()  {
 		
-//		this.player.checkWarning();
 		this.player.checkCap();
-		
 		this.turns += 1;
 		this.player.oneturn();
 		System.out.println("");
@@ -37,8 +37,11 @@ public class TextAdventure {
 			System.out.println("The night has fallen.");
 			System.out.println("You have survived " + (this.days - 1) + " days.");
 			System.out.println("");
+			
+			/* start a new day */
 			System.out.println("Day " + this.days);
 			
+			/* print out weather description from one of the followings */
 			Random rand = new Random();
 			int  r = rand.nextInt((3 - 0) + 1) + 0;
 			if  (r == 0)  {
@@ -62,7 +65,7 @@ public class TextAdventure {
 	}
 	
 	
-	
+	/* welcome message and instructions */
 	public static void welcomeToTheGame(Scanner in, TextAdventure t)  {
 		System.out.println("");
 		System.out.println("****WARNING****");
@@ -73,9 +76,7 @@ public class TextAdventure {
 		System.out.println("[type anything to start the game]");
 		in.nextLine();
 		System.out.println("You wake up in an unfamiliar room.");
-		System.out.println("[hit Enter]");
-		in.nextLine();
-		System.out.println("You are lying on a cold concrete floor.");
+		System.out.println("You find yourself on a cold concrete floor.");
 		System.out.println("There is broken glass protruding from your chest.");
 		System.out.println("[hit Enter]");
 		in.nextLine();
@@ -89,8 +90,6 @@ public class TextAdventure {
 		System.out.println("The eggs blocked your sight, and you crashed.");
 		System.out.println("You don't know who threw the eggs, and why they did that.");
 		System.out.println("You passed out immediately.");
-		System.out.println("[hit Enter]");
-		in.nextLine();
 		System.out.println("But when you wake up from the coma this morning, you are locked in this house with several other strangers.");
 		System.out.println("There is no way out.");
 		System.out.println("[hit Enter]");
@@ -98,61 +97,60 @@ public class TextAdventure {
 		System.out.println("You have four statuses:");
 		System.out.println("Health, food, water, and mental state.");
 		System.out.println("If any of them drops to 0, you are dead.");
+		System.out.println("Be aware that water and mental state drops more quickly.");
+		System.out.println("[hit Enter]");
+		in.nextLine();
+		t.player.commands();
+		System.out.println("You can print this menu at anytime during the game.");
+		System.out.println("[hit Enter]");
+		in.nextLine();
+		System.out.println("Novice Guide:");
+		System.out.println("Always search your room first, you cannot pick up items before you search the room.");
+		System.out.println("Pick up as many items as you can, you cannot consume items before picking them up.");
+		System.out.println("If mental status is low, use medicine or take rest.");
 		System.out.println("[hit Enter]");
 		in.nextLine();
 		System.out.println("Eat, drink, rest, and take pills.");
 		System.out.println("Find supplies in the house.");
 		System.out.println("Protect yourself, and stay alive.");
 		System.out.println("Welcome to the game.");
-		System.out.println("[hit Enter]");
-		in.nextLine();
-		t.player.commands();
-		System.out.println("[hit Enter]");
-		in.nextLine();
-		System.out.println("Novice Guide:");
-		System.out.println("Always search your room first.");
-		System.out.println("Pick up as many items as you can.");
-		System.out.println("If mental status is low, use medicine or take rest.");
 		System.out.println("[type command]");
 	}
 	
 	
-	
+	/* start the game */
 	public static void main(String[] argc)  {
-		TextAdventure t = new TextAdventure();
 		
+		TextAdventure t = new TextAdventure();
 		Scanner in = new Scanner(System.in);
 		
-
 		welcomeToTheGame(in, t);
-		String input = in.nextLine();
-		while  (!input.equalsIgnoreCase("suicide"))  {
-			
-		LanguageParser.languageParse(input, t, in);
 		
+		String input = in.nextLine();
+		
+		while  (!input.equalsIgnoreCase("suicide"))  {
+		LanguageParser.languageParse(input, t, in);
 		t.player.checkWarning();
 		
 		if  (t.player.checkAlive() == false)  {
+			/* if the user is dead, stop the game */
 			break;
 		}
 		
 		input = in.nextLine();
-		System.out.println("");
+		System.out.println();
 		}
 		
-		System.out.println("");
+		System.out.println();
 		System.out.println("You are DEAD.");
 		System.out.println("You survided " + t.days + " days.");
 		
 		/* check how you died */
 		t.player.checkDeathReason();
 		
-		
 		System.out.println("Thanks for playing.");
 		in.close();
 
 	}
-	
-	
 	
 }

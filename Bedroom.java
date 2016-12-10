@@ -2,21 +2,19 @@
 
 public class Bedroom extends Room {
 
-
-
 	public Bedroom(String name, String e, String s, String w, String n, itemInventory itemList) {
 		super(name, e, s, w, n, itemList);
 	}
+	
 
 	@Override
 	public void lookaround() {
-		
 		System.out.println("This room looks like a bedroom.");
 		System.out.println("It looks just like your own.");
 		System.out.println("You miss the warmness there, and your comfortable bed.");
 		System.out.println("Too bad you cannot go back anymore, or can you?");
-		
 	}
+	
 	
 	public void search()  {
 		this.searched = true;
